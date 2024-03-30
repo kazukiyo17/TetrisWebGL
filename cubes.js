@@ -1,4 +1,4 @@
-const CUBE_COUNT = 4;
+const CUBE_COUNT = 5;
 
 // 七种颜色
 const COLORS = [
@@ -22,6 +22,75 @@ const CUBES = [
     vec4(2.0, 1.0, 2.0, 1),
     vec4(0.0, 1.0, 2.0, 1),
   ],
+  [
+    vec4(0.0, 0.0, 0.0, 1),
+    vec4(0.0, 0.0, 3.0, 1),
+    vec4(1.0, 0.0, 3.0, 1),
+    vec4(1.0, 0.0, 0.0, 1),
+    vec4(1.0, 0.0, 1.0, 1),
+    vec4(2.0, 0.0, 1.0, 1),
+    vec4(2.0, 0.0, 0.0, 1),
+
+    vec4(0.0, 1.0, 0.0, 1),
+    vec4(0.0, 1.0, 3.0, 1),
+    vec4(1.0, 1.0, 3.0, 1),
+    vec4(1.0, 1.0, 0.0, 1),
+    vec4(1.0, 1.0, 1.0, 1),
+    vec4(2.0, 1.0, 1.0, 1),
+    vec4(2.0, 1.0, 0.0, 1),
+  ],
+  [
+    vec4(0.0, 0.0, 0.0, 1),
+    vec4(2.0, 0.0, 0.0, 1),
+    vec4(2.0, 0.0, 2.0, 1),
+    vec4(0.0, 0.0, 2.0, 1),
+    vec4(0.0, 1.0, 0.0, 1),
+    vec4(2.0, 1.0, 0.0, 1),
+    vec4(2.0, 1.0, 2.0, 1),
+    vec4(0.0, 1.0, 2.0, 1),
+  ],
+  [
+    vec4(0.0, 0.0, 0.0, 1),
+    vec4(0.0, 0.0, 1.0, 1),
+    vec4(1.0, 0.0, 0.0, 1),
+    vec4(1.0, 0.0, 1.0, 1),
+    vec4(1.0, 0.0, 2.0, 1),
+    vec4(2.0, 0.0, 0.0, 1),
+    vec4(2.0, 0.0, 1.0, 1),
+    vec4(2.0, 0.0, 2.0, 1),
+    vec4(3.0, 0.0, 1.0, 1),
+    vec4(3.0, 0.0, 2.0, 1),
+
+    vec4(0.0, 1.0, 0.0, 1),
+    vec4(0.0, 1.0, 1.0, 1),
+    vec4(1.0, 1.0, 0.0, 1),
+    vec4(1.0, 1.0, 1.0, 1),
+    vec4(1.0, 1.0, 2.0, 1),
+    vec4(2.0, 1.0, 0.0, 1),
+    vec4(2.0, 1.0, 1.0, 1),
+    vec4(2.0, 1.0, 2.0, 1),
+    vec4(3.0, 1.0, 1.0, 1),
+    vec4(3.0, 1.0, 2.0, 1),
+  ],
+  [
+    vec4(0.0, 0.0, 0.0, 1),
+    vec4(0.0, 0.0, 3.0, 1),
+    vec4(1.0, 0.0, 0.0, 1),
+    vec4(1.0, 0.0, 1.0, 1),
+    vec4(1.0, 0.0, 2.0, 1),
+    vec4(1.0, 0.0, 3.0, 1),
+    vec4(2.0, 0.0, 1.0, 1),
+    vec4(2.0, 0.0, 2.0, 1),
+
+    vec4(0.0, 1.0, 0.0, 1),
+    vec4(0.0, 1.0, 3.0, 1),
+    vec4(1.0, 1.0, 0.0, 1),
+    vec4(1.0, 1.0, 1.0, 1),
+    vec4(1.0, 1.0, 2.0, 1),
+    vec4(1.0, 1.0, 3.0, 1),
+    vec4(2.0, 1.0, 1.0, 1),
+    vec4(2.0, 1.0, 2.0, 1),
+  ],
 ];
 
 // 面
@@ -33,6 +102,55 @@ const FACES = [
     [6, 7, 3, 2],
     [7, 4, 0, 3],
     [4, 5, 1, 0],
+  ],
+  [
+    [0, 1, 2, 3],
+    [3, 4, 5, 6],
+    [7, 8, 9, 10],
+    [10, 11, 12, 13],
+    [0, 1, 8, 7],
+    [1, 2, 9, 8],
+    [2, 4, 11, 9],
+    [4, 5, 12, 11],
+    [5, 6, 13, 12],
+    [0, 6, 13, 7],
+  ],
+  [
+    [0, 1, 2, 3],
+    [4, 5, 6, 7],
+    [5, 6, 2, 1],
+    [6, 7, 3, 2],
+    [7, 4, 0, 3],
+    [4, 5, 1, 0],
+  ],
+  [
+    [0, 1, 6, 5],
+    [3, 4, 9, 8],
+    [10, 11, 16, 15],
+    [13, 14, 19, 18],
+    [0, 5, 15, 10],
+    [0, 1, 11, 10],
+    [1, 3, 13, 11],
+    [3, 4, 14, 13],
+    [4, 9, 19, 14],
+    [8, 9, 19, 18],
+    [6, 8, 18, 16],
+    [5, 6, 16, 15],
+    [0, 5, 15, 10],
+  ],
+  [
+    [0, 1, 5, 2],
+    [3, 4, 7, 6],
+    [8, 9, 13, 10],
+    [11, 12, 15, 14],
+    [0, 1, 9, 8],
+    [1, 5, 13, 9],
+    [4, 5, 13, 12],
+    [4, 7, 15, 12],
+    [6, 7, 15, 14],
+    [3, 6, 14, 11],
+    [2, 3, 11, 10],
+    [0, 2, 10, 8],
   ],
 ];
 
@@ -89,59 +207,29 @@ var R = [];
 
 function newCube() {
   current++;
-  console.log("current++:", current);
   T.push([0, 15, 0]);
   R.push([0, 0, 0]);
-  CUBE_LIST.push(0);
+  // 随机生成 CUBE_COUNT
+  var id = Math.floor(Math.random() * CUBE_COUNT);
+  CUBE_LIST.push(id);
 }
 
-function renderCubes() {
+function renderCubes(createFlag) {
+  // console.log("current:", current);
   if (current === -1) {
     newCube();
   }
   for (var i = 0; i <= current; i++) {
-    renderCube(i);
+    renderCube(i, createFlag);
   }
 }
 
-// function renderShapes() {
-//   if (current === -1) {
-//     newShape();
-//   }
-//   for (var idx = 0; idx <= current; idx++) {
-//     renderShape(idx);
-//   }
-// }
-
-// function renderShape(idx) {
-//   // id 确定是那种形状
-//   var id = CUBE_LIST[idx];
-//   // 该形状是否可以下落
-//   if (idx === current) {
-//     if (canFall()) {
-//       T[idx][1] -= 1;
-//     } else {
-//       // updatePointHeights(CUBE_LIST[idx]);
-//       newShape();
-//     }
-//   }
-//   // 画小方块
-//   for (var i = 0; i < TShapes[id].length; i++) {
-//     renderCube(idx, id, i);
-//   }
-// }
-
-/**
- * 画小方块
- * @param {x} idx
- * @param {*} id
- */
-function renderCube(idx) {
-  if (idx === current) {
+function renderCube(idx, createFlag) {
+  // console.log("createFlag", createFlag);
+  if (idx === current && createFlag) {
     if (canFall()) {
       T[idx][1] -= 1;
     } else {
-      // updatePointHeights(CUBE_LIST[idx]);
       newCube();
     }
   }
@@ -158,13 +246,14 @@ function renderCube(idx) {
 }
 
 function pointsCube(idx) {
-  var vertices = CUBES[0];
-  var colorVec = COLORS[0];
+  var id = CUBE_LIST[idx];
+  var vertices = CUBES[id];
+  var colorVec = COLORS[id];
   var pointsArr = [];
   var nomalsArr = [];
   var colorsArr = [];
-  for (var i = 0; i < FACES[0].length; i++) {
-    quad(FACES[0][i], pointsArr, nomalsArr, vertices);
+  for (var i = 0; i < FACES[id].length; i++) {
+    quad(FACES[id][i], pointsArr, nomalsArr, vertices);
   }
 
   for (var i = 0; i < pointsArr.length; i++) {
@@ -232,8 +321,8 @@ function canFall() {
       points[2][2]
     );
     var height = points[0][1];
-    console.log("innerPoints:", innerPoints);
-    console.log("height:", height);
+    // console.log("innerPoints:", innerPoints);
+    // console.log("height:", height);
     // 如果有三个小于等于POINT_HEIGHTS的，说明停止下落
     for (var j = 0; j < innerPoints.length; j++) {
       var point = innerPoints[j];
@@ -293,7 +382,7 @@ function updatePointHeights() {
       );
     }
   }
-  console.log("POINT_HEIGHTS:", POINT_HEIGHTS);
+  // console.log("POINT_HEIGHTS:", POINT_HEIGHTS);
 }
 
 // 获取四个点确定的四边形的所有点
@@ -368,8 +457,6 @@ function canRotateY90() {
 }
 
 function canRotateZ90() {
-  // 检查是否可以旋转
-  // x, z >=0 && x, z <= CONTAINER_WIDTH
   var points = pointsArray[current];
   for (var i = 0; i < points.length; i++) {
     // 计算旋转后的坐标

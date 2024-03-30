@@ -38,12 +38,12 @@ var normalMatrix;
 var normalMatrixLoc;
 
 //光源属性
-var Tx_light = 0;
-var Ty_light = 20;
-var Tz_light = 16;
+var Tx_light = 40;
+var Ty_light = 40;
+var Tz_light = 40;
 
 var lightPosition = vec4(Tx_light, Ty_light, Tz_light, 1.0);
-var lightAmbient = vec4(0.5, 0.5, 0.5, 1.0);
+var lightAmbient = vec4(0.0, 0.0, 0.0, 1.0);
 var lightDiffuse = vec4(1.0, 1.0, 1.0, 1.0);
 var lightSpecular = vec4(1.0, 1.0, 1.0, 1.0);
 
@@ -51,7 +51,7 @@ var lightSpecular = vec4(1.0, 1.0, 1.0, 1.0);
 var materialAmbient = vec4(1.0, 1.0, 1.0, 1.0); //环境光照下物体反射的颜色（物体本身颜色）
 var materialDiffuse = vec4(1.0, 1.0, 1.0, 1.0); //漫反射下物体颜色（物体本身颜色）
 var materialSpecular = vec4(1.0, 1.0, 1.0, 1.0); //镜面光照颜色
-var materialShininess = 2.0; //镜面高光散射半径
+var materialShininess = 45.0; //镜面高光散射半径
 
 var ambientProduct, diffuseProduct, specularProduct;
 
@@ -75,7 +75,7 @@ function init() {
   gl.useProgram(program);
   // render();
 
-  interval = setInterval(render, 1000);
+  interval = setInterval(() => render(true), 1000);
 
   canvas.onmousedown = function (ev) {
     var x = ev.clientX;
@@ -108,26 +108,16 @@ function init() {
         else rotationDirection = true;
       } else {
         theta -= (dx * Math.PI) / 180;
-        phi += (dy * Math.PI) / 180;
+        phi -= (dy * Math.PI) / 180;
       }
+      // render(false);
     }
     (lastX = x), (lastY = y);
   };
 }
 
-function render() {
-  // canvas = document.getElementById("glcanvas");
-  // // gl = WebGLUtils.setupWebGL(canvas);
-  // gl = WebGLUtils.setupWebGL(canvas);
-  // if (!gl) {
-  //   alert(
-  //     "Unable to initialize WebGL. Your browser or machine may not support it."
-  //   );
-  //   return;
-  // }
-
+function render(createFlag) {
   gl.enable(gl.DEPTH_TEST);
-  // gl.viewport(0, 0, canvas.width, canvas.height);
   gl.clearColor(0.0, 0.0, 0.0, 1.0);
   gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
 
@@ -165,8 +155,9 @@ function render() {
   // 初始化缓冲区
   renderContainer();
 
-  renderCubes();
+  renderCubes(createFlag);
   // setInterval(render, 1000);
+  requestAnimFrame(() => render(false));
 
   // requestAnimFrame(render);
 }
