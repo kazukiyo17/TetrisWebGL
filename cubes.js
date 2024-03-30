@@ -212,27 +212,40 @@ function newCube() {
   // 随机生成 CUBE_COUNT
   var id = Math.floor(Math.random() * CUBE_COUNT);
   CUBE_LIST.push(id);
+  console.log("PUSH CUBE_LIST:", id);
 }
 
-function renderCubes(createFlag) {
+function renderCubes() {
   // console.log("current:", current);
   if (current === -1) {
     newCube();
   }
   for (var i = 0; i <= current; i++) {
-    renderCube(i, createFlag);
+    renderCube(i);
   }
 }
 
-function renderCube(idx, createFlag) {
-  // console.log("createFlag", createFlag);
-  if (idx === current && createFlag) {
-    if (canFall()) {
-      T[idx][1] -= 1;
-    } else {
-      newCube();
-    }
+function cubeFall() {
+  if (current === -1) {
+    return;
   }
+  // 判断是否可以下落，如果不行，新建一个cube
+  if (canFall()) {
+    T[current][1] -= 1;
+  } else {
+    newCube();
+  }
+}
+
+function renderCube(idx) {
+  // console.log("createFlag", createFlag);
+  // if (idx === current && createFlag) {
+  //   if (canFall()) {
+  //     T[idx][1] -= 1;
+  //   } else {
+  //     newCube();
+  //   }
+  // }
   var t = translate(T[idx][0], T[idx][1], T[idx][2]);
   var r = mult(rotateY90(R[idx][1]), rotateZ90(R[idx][2]));
   modelViewMatrix = mult(mult(translate(0.0, 0.0, 0.0), t), r);

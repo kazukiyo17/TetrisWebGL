@@ -11,7 +11,7 @@ var fovy = 45.0; // Field-of-view in Y direction angle (in degrees)
 var aspect; // Viewport aspect ratio
 var near = 0.5; // Distance of near clipping plane
 var far = 100.0; // Distance of far clipping plane
-var radius = 28.0; // 半径
+var radius = 35.0; // 半径
 var theta = -0.5; // 角度
 var phi = -0.5; // 角度
 var eye; // 视点
@@ -75,7 +75,9 @@ function init() {
   gl.useProgram(program);
   // render();
 
-  interval = setInterval(() => render(true), 1000);
+  // interval = setInterval(() => render(true), 1000);
+  interval = setInterval(cubeFall, 1000);
+  render();
 
   canvas.onmousedown = function (ev) {
     var x = ev.clientX;
@@ -116,7 +118,7 @@ function init() {
   };
 }
 
-function render(createFlag) {
+function render() {
   gl.enable(gl.DEPTH_TEST);
   gl.clearColor(0.0, 0.0, 0.0, 1.0);
   gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
@@ -155,11 +157,11 @@ function render(createFlag) {
   // 初始化缓冲区
   renderContainer();
 
-  renderCubes(createFlag);
+  renderCubes();
   // setInterval(render, 1000);
-  requestAnimFrame(() => render(false));
+  // requestAnimFrame(() => render(false));
 
-  // requestAnimFrame(render);
+  requestAnimFrame(render);
 }
 
 // 视图初始化
